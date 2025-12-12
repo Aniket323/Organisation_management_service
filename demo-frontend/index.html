@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Organization Management Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1 class="title">Organization Management Dashboard</h1>
+
+    <div class="container">
+
+        <div class="card">
+            <h2>Create Organization</h2>
+
+            <input id="create_name" placeholder="Organization Name">
+            <input id="create_email" placeholder="Admin Email">
+            <input id="create_pass" type="password" placeholder="Admin Password">
+            <button onclick="createOrg()">Create</button>
+
+            <div id="create_result" class="msg"></div>
+        </div>
+
+        <div class="card">
+            <h2>Admin Login</h2>
+
+            <input id="login_email" placeholder="Email">
+            <input id="login_pass" type="password" placeholder="Password">
+            <button onclick="login()">Login</button>
+
+            <div id="login_result" class="msg"></div>
+        </div>
+
+        <div class="card">
+            <h2>Get Organization Details</h2>
+
+            <input id="get_name" placeholder="Organization Name">
+            <button onclick="getOrg()">Get Details</button>
+
+            <div id="get_result" class="msg"></div>
+        </div>
+
+        <div class="card">
+            <h2>Update Organization</h2>
+
+            <input id="update_old_name" placeholder="Current Organization Name">
+            <input id="update_new_name" placeholder="New Organization Name (optional)">
+            <input id="update_email" placeholder="New Admin Email (optional)">
+            <input id="update_pass" type="password" placeholder="New Password (optional)">
+            <button onclick="updateOrg()">Update</button>
+
+            <div id="update_result" class="msg"></div>
+        </div>
+
+        <div class="card">
+            <h2>Delete Organization</h2>
+
+            <input id="delete_name" placeholder="Organization Name">
+            <button onclick="deleteOrg()">Delete</button>
+
+            <div id="delete_result" class="msg"></div>
+        </div>
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
