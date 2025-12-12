@@ -1,103 +1,134 @@
-🏢 Organization Management Service (Backend)
 
-A Node.js + Express backend designed for multi-tenant organization management.
-This service stores global metadata in a Master MongoDB database and dynamically creates isolated MongoDB collections for each organization.
+---
 
-🚀 Features
-- Multi-tenant architecture with dynamic collection creation
-- Secure admin authentication (bcrypt + JWT)
-- Organization CRUD (Create, Read, Update, Delete)
-- Clean modular folder structure
-- Environment-based configuration
-- Easy integration with any frontend
-  
+# 🏢 **Organization Management Service (Backend)**
 
-🛠️ Setup & Installation
+*A scalable multi-tenant backend built with Node.js, Express & MongoDB.*
 
-1️⃣ Clone the Repository
+This service uses a **Master Database** to store global metadata and creates **dynamic MongoDB collections** for each organization perfect for SaaS-style multi-tenant systems.
 
-git clone your-repo-url
+---
 
+## ✨ **Features**
+
+* ⚡ **Multi-tenant architecture** with dynamic collection creation
+* 🔐 **Secure Admin Authentication** (bcrypt + JWT)
+* 🏗️ **Modular & Clean Folder Structure**
+* 📡 **Full Organization CRUD Support**
+* ⚙️ **Environment-based configuration**
+* 🔌 **Easy to integrate with any frontend**
+
+---
+
+## 🛠️ **Setup & Installation**
+
+### **1️⃣ Clone the Repository**
+
+```bash
+git clone <your-repo-url>
 cd organization-management-service
+```
 
-2️⃣ Install Dependencies
-  
+### **2️⃣ Install Dependencies**
+
+```bash
 npm install
+```
 
-⚙️ Environment Variables
+---
 
-Create a .env file in the project root and add:
+## ⚙️ **Environment Variables**
 
+Create a `.env` file in the root folder and add:
+
+```env
 PORT=4000
-
 MONGO_URI=
-
 JWT_SECRET=your_secret_jwt
-
 JWT_EXPIRES_IN=2h
-
 BCRYPT_SALT_ROUNDS=10
+```
 
+### 📝 **How to Get `MONGO_URI`**
 
-📝 How to get MONGO_URI:
+1. Go to **MongoDB Atlas**
+2. Create a new **Cluster** → Name it: `org-mgmt`
+3. Create a **username + password**
+4. Click **Connect → Drivers**
+5. Copy the connection string
+6. Replace `<username>` and `<password>` in the URI
 
-- Go to MongoDB Atlas
-- Create a new Cluster and name it: org-mgmt
-- Create a username + password
-- Click Connect → Drivers
-- Copy the connection URI and replace <username> and <password>
+> 💡 Use the *standard connection string* for Node.js.
 
-▶️ Running the Backend
+---
 
+## ▶️ **Running the Backend**
+
+### **Development Mode**
+
+```bash
 npm run dev
+```
 
-OR
+### **Production Mode**
 
+```bash
 npm start
+```
 
+Server runs at:
+👉 **[http://localhost:4000](http://localhost:4000)**
 
-Backend will start at:
+---
 
-http://localhost:4000
+## 🎨 **Frontend Quick Demo (Static HTML)**
 
-🎨 Frontend Quick Demo (Static HTML)
+A simple UI demo is included in the project.
 
-A simple UI demo is provided.
+### To run the frontend:
 
-To run the frontend:
+1. Open the `.html` file
+2. Right-click → **Open with Live Server**
 
-Open the HTML file
+That’s it! 🚀
 
-Right-click → Open with Live Server
+---
 
-📡 API Endpoints
+## 📡 **API Endpoints**
 
-- POST	/org/create	Create a new organization
+### **Organization Routes**
 
-- GET	/org/get?organization_name=...	Fetch organization details
+| Method | Endpoint                         | Description                                |
+| ------ | -------------------------------- | ------------------------------------------ |
+| POST   | `/org/create`                    | Create a new organization                  |
+| GET    | `/org/get?organization_name=...` | Fetch organization details                 |
+| PUT    | `/org/update`                    | Update organization info                   |
+| DELETE | `/org/delete`                    | Delete organization *(Admin JWT required)* |
 
-- PUT	/org/update	Update organization info
+### **Admin Routes**
 
-- DELETE	/org/delete	Delete org (Requires Admin JWT)
+| Method | Endpoint           | Description               |
+| ------ | ------------------ | ------------------------- |
+| POST   | `/org/admin/login` | Admin login → returns JWT |
 
-- POST	/org/admin/login	Login admin & receive JWT
+---
 
-🔐 Security Notes
+## 🔐 **Security Notes**
 
-Passwords are encrypted using bcrypt
+* 🔒 Passwords hashed using **bcrypt**
+* 🔑 JWT payload includes:
 
-JWT payload contains:
-
+```json
 {
-
   "adminEmail": "",
-  
   "organizationName": "",
-  
   "organizationId": ""
-  
 }
+```
 
-Dynamic collections follow naming convention:
+* 📁 Dynamic collections follow this pattern:
 
+```
 org_<organization_name_safe>
+```
+
